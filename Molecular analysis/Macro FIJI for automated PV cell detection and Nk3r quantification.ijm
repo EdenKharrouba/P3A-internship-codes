@@ -12,8 +12,6 @@ outputFolder = getDirectory("output folder to save the results");
 list = getFileList(inputFolder);
 print("Nombre de fichiers détectés dans le dossier d'entrée : " + list.length);
 setBatchMode(true);
-// Désactiver l'affichage des fenêtres intermédiaires
-//setOption("Show Intermediate Results", false);
 
 //run("Read and Write Excel", "file=[C:/Users/uqekharr/OneDrive - The University of Queensland/Documents/2. Immunohistochemistry/Resultstest/Results.xlsx]");
 
@@ -45,7 +43,7 @@ for (i=0; i<list.length; i++){  // list.length is equal to the number of images 
 	//waitForUser("Adjust Contrast to see PV neurons for future ROI quality control.\nPress OK to continue.");
 	
 	run("Duplicate...", "duplicate");
-	run("Z Project...", "projection=[Max Intensity]");
+	// run("Z Project...", "projection=[Max Intensity]");
 	imageTitle=getTitle();
 	// Split channels of the duplicated image
 	run("Split Channels");
@@ -99,7 +97,7 @@ for (i=0; i<list.length; i++){  // list.length is equal to the number of images 
     
     // Save NK3R expression results
     
-    run("Read and Write Excel", "no_count_column file=[" + outputFolder + "Results98criteria.xlsx] dataset_label=[Nk3r expression]");
+    run("Read and Write Excel", "no_count_column file=[" + outputFolder + "Results.xlsx] dataset_label=[Nk3r expression]");
     //waitForUser("NK3R expression in whole PV+ cells has been copied.\nPress OK to continue.");
     run("Clear Results");
 
@@ -110,7 +108,7 @@ for (i=0; i<list.length; i++){  // list.length is equal to the number of images 
     selectWindow("Results");
     
     // Save PV expression results
-    run("Read and Write Excel", "no_count_column file=[" + outputFolder + "Results98criteria.xlsx] dataset_label=[PV expression]");
+    run("Read and Write Excel", "no_count_column file=[" + outputFolder + "Results.xlsx] dataset_label=[PV expression]");
     //waitForUser("PV expression in whole PV+ cells has been copied.\nPress OK to continue.");
     run("Clear Results");
 
